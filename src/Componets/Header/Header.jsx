@@ -115,7 +115,7 @@ function Header() {
 
       {/* Right Links */}
       <div className={classes.right_container}>
-        <a href className={classes.language}>
+        <a href='#' className={classes.language}>
             <img src="https://www.shutterstock.com/shutterstock/photos/551168752/display_1500/stock-vector-usa-vector-flag-551168752.jpg" alt="flag" />
           <select name="" id="">
              <option value="">EN</option>
