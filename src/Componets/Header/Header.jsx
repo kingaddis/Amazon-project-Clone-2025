@@ -1,78 +1,7 @@
-// import React from 'react'
-// import classes from "./Header.module.css"
-// import { IoSearch } from "react-icons/io5";
-// import { GiDeliveryDrone } from "react-icons/gi";
-// import { IoIosCart } from "react-icons/io";
-// function Header() {
-//   return (
-//     <section>
-//         <div className={classes.header_container}>
-
-//             <div className={classes.logo_container}>
-//                     {/* {logo} */}
-//                     <a href="/">
-//                         <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon log" />
-//                     </a>
-//                     {/* {delevery} */} 
-//                 <div className={classes.delevery}>
-//                     <span>
-//     {/* {delevery icon} */} 
-//                     <GiDeliveryDrone />
-//                     </span>
-//                     <div>
-//                         <p>Delivered to</p>
-//                         <span>Ethiopia</span>
-//                     </div>
-//                 </div>
-//             </div>
-//             <div className={classes.search}>  
-//                 {/* {search bar} */} 
-               
-//                     <select name="" id="">
-//                         <option value="">ALL</option>
-//                     </select>
-//                     <input type="text"  name='' id='' />
-//                     <IoSearch size={25}/>
-//                     {/* icon */}
-               
-//             </div>
-//             {/* right side link */}
-//             <div className={classes.order_container}>
-//                 <a href="">
-//                     <img src="https://www.shutterstock.com/shutterstock/photos/551168752/display_1500/stock-vector-usa-vector-flag-551168752.jpg" alt="" />
-//                     <section>
-//                         <option value="">EN</option>
-//                     </section>
-
-//                 </a>
-
-//                     {/* THREE COMPONET */}
-//                     <a href="">
-//                         <p>Sign In</p>
-//                         <span>Account & Lists</span>
-//                     </a>
-
-//                     <a href="">
-//                         <p>Returns</p>
-//                         <span>& Orders</span>
-//                     </a>
-//                         {/* CART */}
-
-                    
-//                     <a href="" className={classes.cart}>
-//                         <IoIosCart />
-//                         <span>0</span>
-//                     </a>
-//             </div>
-//         </div>
-//     </section>
-//   )
-// }
-
-// export default Header
 
 import React from 'react';
 import classes from "./Header.module.css";
+import { Link } from 'react-router-dom';
 import { IoSearch } from "react-icons/io5";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
@@ -85,9 +14,9 @@ function Header() {
       
       {/* Logo and Delivery */}
       <div className={classes.logo_container}>
-        <a href="#">
+        <Link to="/">
           <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo" />
-        </a>
+        </Link>
         <div className={classes.delivery}>
           <span>
             <FaMapMarkerAlt />
@@ -115,28 +44,28 @@ function Header() {
 
       {/* Right Links */}
       <div className={classes.right_container}>
-        <a href='#' className={classes.language}>
+        <Link to='#' className={classes.language}>
             <img src="https://www.shutterstock.com/shutterstock/photos/551168752/display_1500/stock-vector-usa-vector-flag-551168752.jpg" alt="flag" />
           <select name="" id="">
              <option value="">EN</option>
            </select>
          
-        </a>
+        </Link>
 
-        <a href=''>
+        <Link to=''>
           <p>Hello, Sign in</p>
           <span>Account & Lists</span>
-        </a>
+        </Link>
 
-        <a href=''>
+        <Link to='/orders'>
           <p>Returns</p>
           <span>& Orders</span>
-        </a>
+        </Link>
 
-        <a href='' className={classes.cart}>
+        <Link to='/cart' className={classes.cart}>
           <IoIosCart size={35} />
           <span>0</span>
-        </a>
+        </Link>
       </div>
     </header>
     <LowerHeader/>
