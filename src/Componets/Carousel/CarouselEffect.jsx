@@ -11,6 +11,7 @@ function CarouselEffect() {
         infiniteLoop={true}
         showIndicators={false}
         showThumbs={false}
+        showArrows={false}  
       >
         {img.map((imageLink) => {
             return  <img src={imageLink} />}

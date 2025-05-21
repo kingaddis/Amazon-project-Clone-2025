@@ -1,19 +1,3 @@
-// import React from 'react'
-// import classes from './Results.module.css'
-// import LayOut from '../../Componets/LayOut/LayOut'
-// import { useParams } from 'react-router-dom'
-// function Results() {
-//   const {categoryName}=useParams()
-//   console.log(categoryName)
-//   return (
-//     <LayOut>    
-//         <div>Results</div>
-//         </LayOut>
-
-//   )
-// }
-
-// export default Results
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -21,35 +5,42 @@ import { useParams } from 'react-router-dom';
 import LayOut from '../../Componets/LayOut/LayOut';
 import classes from './Results.module.css';
 import ProductCard from '../../Componets/Product/ProductCard';
-
+import Loader from '../../Componets/Loader/Loader'; 
 function Results() {
   const { categoryName } = useParams();
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true); //  loading state
 
   useEffect(() => {
-   
-  axios
-    .get(`https://fakestoreapi.com/products/category/${categoryName}`)
-    .then((res) => {
-      setResults(res.data); 
-    })
-    .catch((err) => {
-      console.error('Error fetching products:', err);
-    });
+    setLoading(true); //  start loader
+    axios
+      .get(`https://fakestoreapi.com/products/category/${categoryName}`)
+      .then((res) => {
+        setResults(res.data);
+        setLoading(false); //  stop loader
+      })
+      .catch((err) => {
+        console.error('Error fetching products:', err);
+        setLoading(false);
+      });
   }, [categoryName]);
 
   return (
     <LayOut>
       <section>
-        <h1 style={{padding:"30px"}}>Results</h1>
-        <p style={{padding:"30px"}}>Catagory/{categoryName}</p>
+        <h1 style={{ padding: "30px" }}>Results</h1>
+        <p style={{ padding: "30px" }}>Category / {categoryName}</p>
         <hr />
-        <div className={classes.products_Container}>
-              {results?.map((product) => (
-                <ProductCard key={product.id} product={product}/>
-                
-              ))}
-        </div>
+        
+        {loading ? (
+          <Loader /> //  Show loader while fetching
+        ) : (
+          <div className={classes.products_Container}>
+            {results.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
       </section>
     </LayOut>
   );

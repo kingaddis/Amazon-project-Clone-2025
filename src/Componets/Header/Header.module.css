@@ -1,96 +1,4 @@
-/* *{
-    padding: 0;
-    margin: 0;
-}
 
-.header_container{
-background-color: #1a1a1a;
-display: flex;
-gap: 10px;
-align-items: center;
-color:white;
-height: 70px;
-}
-.logo_container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 250px;
-}
-.logo_container img{
-    width: 80%;
-    padding-top: 5px;
-    margin-left: 20px;
-    vertical-align: middle;
-}
-.delevery{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    font-weight: bold;
-    padding: 5px;
-}
-.delevery p{
-    font-size: 10px;
-}
-.search{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   border-radius: 10px;
-   overflow: hidden;
-   width: 100%;
-   flex: 1;
-}
-.search select{
-border:none
-}
-.search-input {
-  border: 1px solid #d1d1d1;
-  width: 100%;
-  margin-right: -2px;
-}
-
-.search-select {
-  border: none;
-} */
-/* 
-.search svg {
-  padding: 7px;
-  background: #febd69;
-  color: #333; 
-}
-
-.search-sug:hover {
-  background-color: #8d4964;
-}
-
-.search:focus-within {
-  border: 2px solid rgb(235, 161, 173);
-}
-.cart {
-  position: relative;
-}
-
-.cart span {
-  position: absolute;
-  font-weight: bold;
-  top: -6px;
-  left: 14px;
-  font-size: 20px;
-  background-color: orange;
-  color: #fff; 
-  
-}
-.order_container a:hover,
-.delivery:hover,
-.logo_container a:hover,
-.lower_container ul li:hover {
-  border: 1px solid white;
-  border-radius: 3px;
-  background-color: orange; 
-} */
 /* Reset */
 * {
   padding: 0;
@@ -277,9 +185,10 @@ padding: 10px;
     flex-direction: column !important;
     height: auto;
   }
+
   .logo_container {
-    /* flex-direction: column; */
-    gap: 20px; /* more space between logo and delivery */
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
   }
 

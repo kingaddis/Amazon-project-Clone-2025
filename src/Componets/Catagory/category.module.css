@@ -1,41 +1,54 @@
-.category{
-    height: 350px;
-    width: 280px;
-    background-color: white;
-    box-shadow: 0 0 10px rgb(0,0,0,0.2);
-   
+.category {
+  height: 350px;
+  width: 280px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.category img{
-    width: 100%;
-    object-fit: contain;
-    max-height: 250px;
-    max-width: 250px;
-    padding: 15px 10px;
-    
-}
-.category a{
-    text-decoration: none;
-    color: rgb(35,35,35);
 
+.category img {
+  width: 100%;
+  object-fit: contain;
+  max-height: 250px;
+  max-width: 250px;
+  padding: 15px 10px;
 }
+
+.category a {
+  text-decoration: none;
+  color: rgb(35, 35, 35);
+}
+
 .category h2,
-.category p{
-    
-padding: 5px;
-margin-left: 15px;
-text-decoration: none;
+.category p {
+  padding: 5px;
+  margin-left: 15px;
 }
-.category p{
-    font-size: 14px;
-    font-weight: bold;
-    color: rgb(9,132,209);
-   
-}
-.category_container{
-    position: relative;
-    margin-top: -120px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-   place-items: center;
 
+.category p {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(9, 132, 209);
+}
+
+.category_container {
+  position: relative;
+  margin-top: -120px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row normally */
+  place-items: center;
+  gap: 20px;
+}
+
+/* 👇 2 items per row on mobile */
+@media screen and (max-width: 576px) {
+  .category_container {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 0;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .category {
+    width: 90%;
+  }
 }
