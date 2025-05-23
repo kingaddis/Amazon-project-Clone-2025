@@ -78,7 +78,8 @@ function ProductDetail() {
 
   return (
     <LayOut>
-      <ProductCard product={product} />
+      <ProductCard product={product} flex={(true)} renderDesc={true}/>
+     
     </LayOut>
   );
 }

@@ -1,13 +1,16 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from "./Header.module.css";
 import { Link } from 'react-router-dom';
 import { IoSearch } from "react-icons/io5";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
 import LowerHeader from './LowerHeader';
+import { DataContext } from '../../Componets/DataProvider/DataProvider';
 
 function Header() {
+  const [{ basket }, dispatch] = useContext(DataContext);
+  console.log(basket.length)
   return (
     <>
     <header className={classes.header_container}>
@@ -64,7 +67,7 @@ function Header() {
 
         <Link to='/cart' className={classes.cart}>
           <IoIosCart size={35} />
-          <span>0</span>
+          <span>{basket.length}</span>
         </Link>
       </div>
     </header>
