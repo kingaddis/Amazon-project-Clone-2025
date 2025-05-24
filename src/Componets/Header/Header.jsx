@@ -10,68 +10,73 @@ import { DataContext } from '../../Componets/DataProvider/DataProvider';
 
 function Header() {
   const [{ basket }, dispatch] = useContext(DataContext);
-  console.log(basket.length)
+  const totalItem=basket?.reduce((amount,item)=>{
+    return item.amount + amount
+  },0)
+  // console.log(basket.length)
   return (
     <>
-    <header className={classes.header_container}>
-      
-      {/* Logo and Delivery */}
-      <div className={classes.logo_container}>
-        <Link to="/">
-          <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo" />
-        </Link>
-        <div className={classes.delivery}>
-          <span>
-            <FaMapMarkerAlt />
-          </span>
-         
-          <div>
-            <p>Deliver to</p>
-            <span>Ethiopia</span>
+    <section className={classes.sticky}>
+      <header className={classes.header_container}>
+        
+        {/* Logo and Delivery */}
+        <div className={classes.logo_container}>
+          <Link to="/">
+            <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="Amazon Logo" />
+          </Link>
+          <div className={classes.delivery}>
+            <span>
+              <FaMapMarkerAlt />
+            </span>
+          
+            <div>
+              <p>Deliver to</p>
+              <span>Ethiopia</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Search Bar */}
-      <div className={classes.search}>
-        <select>
-          <option value="all">All</option>
-          <option value="books">Books</option>
-          <option value="electronics">Electronics</option>
-        </select>
-        <input type="text" placeholder="Search Amazon" />
-        <button>
-          <IoSearch size={25} />
-        </button>
-      </div>
+        {/* Search Bar */}
+        <div className={classes.search}>
+          <select>
+            <option value="all">All</option>
+            <option value="books">Books</option>
+            <option value="electronics">Electronics</option>
+          </select>
+          <input type="text" placeholder="Search Amazon" />
+          <button>
+            <IoSearch size={25} />
+          </button>
+        </div>
 
-      {/* Right Links */}
-      <div className={classes.right_container}>
-        <Link to='#' className={classes.language}>
-            <img src="https://www.shutterstock.com/shutterstock/photos/551168752/display_1500/stock-vector-usa-vector-flag-551168752.jpg" alt="flag" />
-          <select name="" id="">
-             <option value="">EN</option>
-           </select>
-         
-        </Link>
+        {/* Right Links */}
+        <div className={classes.right_container}>
+          <Link to='#' className={classes.language}>
+              <img src="https://www.shutterstock.com/shutterstock/photos/551168752/display_1500/stock-vector-usa-vector-flag-551168752.jpg" alt="flag" />
+            <select name="" id="">
+              <option value="">EN</option>
+            </select>
+          
+          </Link>
 
-        <Link to=''>
-          <p>Hello, Sign in</p>
-          <span>Account & Lists</span>
-        </Link>
+          <Link to=''>
+            <p>Hello, Sign in</p>
+            <span>Account & Lists</span>
+          </Link>
 
-        <Link to='/orders'>
-          <p>Returns</p>
-          <span>& Orders</span>
-        </Link>
+          <Link to='/orders'>
+            <p>Returns</p>
+            <span>& Orders</span>
+          </Link>
 
-        <Link to='/cart' className={classes.cart}>
-          <IoIosCart size={35} />
-          <span>{basket.length}</span>
-        </Link>
-      </div>
-    </header>
-    <LowerHeader/>
+          <Link to='/cart' className={classes.cart}>
+            <IoIosCart size={35} />
+            <span>{totalItem}</span>
+          </Link>
+        </div>
+      </header>
+      <LowerHeader/>
+    </section>
     </>
   );
 }
