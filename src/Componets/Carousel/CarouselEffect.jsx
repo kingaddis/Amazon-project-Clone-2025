@@ -13,8 +13,8 @@ function CarouselEffect() {
         showThumbs={false}
         showArrows={false}  
       >
-        {img.map((imageLink) => {
-            return  <img src={imageLink} />}
+        {img.map((imageItemLink) => {
+            return  <img key={imageItemLink}src={imageItemLink} />}
           
            
           

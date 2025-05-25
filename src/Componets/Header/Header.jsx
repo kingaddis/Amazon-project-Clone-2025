@@ -59,7 +59,7 @@ function Header() {
           
           </Link>
 
-          <Link to=''>
+          <Link to='/signup'>
             <p>Hello, Sign in</p>
             <span>Account & Lists</span>
           </Link>
