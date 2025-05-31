@@ -4,14 +4,16 @@ import axios from 'axios';
 import ProductCard from './ProductCard';
 import classes from './Product.module.css';
 import Loader from '../Loader/Loader'; 
-
+import ProductUrl from '../../API/APIENDPOINT';
 function Product() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get('https://fakestoreapi.com/products')
+   
+      .get(ProductUrl)
+
       .then(response => {
         setProducts(response.data);
         setIsLoading(false);

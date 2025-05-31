@@ -1,15 +1,15 @@
 import React from 'react'
-import LayOut from '../../Componets/LayOut/LayOut'
-import Carousel from '../../Componets/Carousel/CarouselEffect'
-import Catagory from '../../Componets/Catagory/Catagory'
-import Product from '../../Componets/Product/Product'
+import LayOut from '../../Components/LayOut/LayOut'
+import Carousel from '../../Components/Carousel/CarouselEffect'
+import Category from '../../components/Category/Category'
+import Product from '../../Components/Product/Product'
 
 function Landing() {
   return (
     <LayOut>
         
       <Carousel/>
-      <Catagory/>
+      <Category/>
       <Product/>
 
 

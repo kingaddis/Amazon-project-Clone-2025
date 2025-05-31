@@ -1,28 +1,33 @@
-import { useState } from 'react'
-// import Header from './Componets/Header/Header'
-// import CarouselEffect  from './Componets/Carousel/CarouselEffect'
-// import Catagory from './Componets/Catagory/Catagory.jsx'
-// import Product from './Componets/Product/Product.jsx'
-
-import Routing from './Routing.jsx'
-
-
-
-
-
+import { useContext, useEffect } from 'react';
+import Routing from './Routing.jsx';
+import { DataContext } from './Components/DataProvider/DataProvider.jsx';
+import { type } from './Utility/action.type.jsx';
+import { auth } from './Utility/firebase.js'; 
 function App() {
+  const [{ user }, dispatch] = useContext(DataContext);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // User is signed in
+        dispatch({
+          type: type.SET_USER,
+          user: authUser,
+        });
+      } else {
+        // User is signed out
+        dispatch({
+          type: type.SET_USER,
+          user: null,
+        });
+      }
+    });
 
-  return (
-    <>
+    // Cleanup the listener when the component unmounts
+    return () => unsubscribe();
+  }, [dispatch]);
 
-    <Routing/>
-        {/* <Header/> */}
-        {/* <CarouselEffect/> */}
-        {/* <Catagory/> */}
-        {/* <Product/> */}
-    </>
-  )
+  return <Routing />;
 }
 
-export default App
+export default App;

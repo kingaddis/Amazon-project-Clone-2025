@@ -5,7 +5,7 @@ import classes from './category.module.css';
 
 
 function CatagoryCard({ data }) {
-  console.log(data) 
+  // console.log(data) 
   return (
     <div className={classes.category}>
       {/* <Link to={`/category/${ data.name}`}> */}
