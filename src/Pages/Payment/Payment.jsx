@@ -5,7 +5,13 @@ import { DataContext } from '../../Components/DataProvider/DataProvider';
 import ProductCard from '../../Components/Product/ProductCard';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
+import  axiosInstance  from '../../API/axios';
+import { ClipLoader } from 'react-spinners';
+// import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../Utility/firebase";
+import { doc, setDoc, collection } from "firebase/firestore";
 
+import { useNavigate } from 'react-router-dom';
 function Payment() {
   const [{ user, basket }, dispatch] = useContext(DataContext);
 
@@ -13,16 +19,89 @@ function Payment() {
     return item.amount + amount;
   }, 0);
 
+
   const total = basket.reduce((amount, item) =>  item.price * item.amount + amount, 0);
   const [cardError,setCardError]=useState(null)
+  const [processing,setProcessing] = useState(false)
+
   const stripe = useStripe();
   const elements = useElements();
+  const navigate=useNavigate()
 
-  const handleChange=(e)=>{
-  
-    e.error.message?setCardError(e?.error?.message):setCardError("")
-
+const handleChange = (e) => {
+  if (e.error?.message) {
+    setCardError(e.error.message);
+  } else {
+    setCardError("");
   }
+};
+const handlePayment = async (e) => {
+  e.preventDefault();
+
+  if (!user) {
+    setCardError("You must be logged in to make a payment.");
+    return;
+  }
+
+  const cardElement = elements.getElement(CardElement);
+  if (!cardElement) {
+    setCardError("Please enter card details.");
+    return;
+  }
+
+  setCardError("");
+  setProcessing(true);
+
+  try {
+    const response = await axiosInstance({
+      method: "POST",
+      url: `/payment/created?total=${total * 100}`,
+    });
+
+    const clientSecret = response.data?.clientSecret;
+
+    const confirmation = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+      },
+    });
+
+    if (confirmation.error) {
+      setCardError(confirmation.error.message);
+      setProcessing(false);
+      return;
+    }
+
+    const paymentIntent = confirmation.paymentIntent;
+
+    // Ensure user is valid here
+    if (!user || !user.uid) {
+      setCardError("User information is missing.");
+      setProcessing(false);
+      return;
+    }
+
+    await setDoc(
+      doc(db, "users", user.uid, "orders", paymentIntent.id),
+      {
+        basket,
+        amount: paymentIntent.amount,
+        created: paymentIntent.created,
+      }
+    );
+
+    setProcessing(false);
+    navigate("/orders",{state:{msg:"you have placed new Order"}})
+
+    // Add any success logic here (clear basket, redirect, etc.)
+
+  } catch (error) {
+    console.error("Payment error:", error);
+    setCardError("Payment failed. Please try again.");
+    setProcessing(false);
+  }
+};
+
   return (
     <LayOut>
       {/* Header */}
@@ -37,7 +116,7 @@ function Payment() {
           <h3>Delivery Address</h3>
           <div>
             <div>{user?.email}</div>
-            <div>abebe@gmail.com</div>
+            {/* <div>abebe@gmail.com</div> */}
             <div>123 React Lane</div>
             <div>Chicago, IL</div>
           </div>
@@ -63,7 +142,7 @@ function Payment() {
           <h3>Payment Method</h3>
           <div className={classes.Payment_card_container}>
             <div className={classes.Payment_details}>
-              <form action="">
+              <form onSubmit={handlePayment}>
                 {/* error */}
                 {cardError && <small style={{color:"red"}}>{cardError}</small>}
 
@@ -78,7 +157,17 @@ function Payment() {
                   <span style={{display:"flex",gap:"10px"}}>
                       Total Order | <CurrencyFormat amount={total}/>
                   </span>  
-                  <button>Pay Now</button>
+                    <button type="submit">
+                      {
+                        processing?(
+                          <div className={classes.loading}>
+                            <ClipLoader color="gray" size={12}/>
+                            <p>Please wait ...</p>
+                          </div>
+                        ): ("Pay Now") 
+                      }
+                    
+                      </button>
                 </div>
               
               </form>
@@ -91,3 +180,12 @@ function Payment() {
 }
 
 export default Payment;
+
+
+// Card Number: 4242 4242 4242 4242
+
+// Expiration Date: Any future date (e.g., 12/34)
+
+// CVC: Any 3-digit number (e.g., 123)
+
+// ZIP/Postal Code: Any valid ZIP (e.g., 10001)

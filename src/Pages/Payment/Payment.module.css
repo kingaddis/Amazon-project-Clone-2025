@@ -30,7 +30,7 @@ padding: 30px;
 }
 .Payment_details button{
 margin-top: 15px;
-width: 20%;
+width: 30%;
 border: none;
 background-color: var(--primary-color);
 border-radius: 5px;
@@ -48,5 +48,18 @@ cursor: pointer;
     display: flex;
     font-size: 16px;
     gap: 10px;
+}
+.loading{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    color: rge(52,52,52
+    );
+}
+@media screen and (max-width: 768px){
+.flex{
+    flex-direction: column;
+}
 }
 

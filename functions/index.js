@@ -22,8 +22,9 @@ app.get("/", (req, res) => {
 });
 
 
+
 app.post("/payment/created", async (req, res) => {
-  const total = Number(req.query.total);
+  const total =parseInt(req.query.total);
 
   if (!total || total <= 0) {
     return res.status(400).json({ error: "Invalid total amount." });

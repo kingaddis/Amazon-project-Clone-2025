@@ -1,5 +1,5 @@
 import React, { useState,useContext } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate,useLocation } from 'react-router-dom';
 import classes from './Signup.module.css';
 import { auth } from '../../Utility/firebase';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -20,11 +20,16 @@ function Auth() {
   })
   const navigate=useNavigate()
   const [{user},dispatch]=useContext(DataContext)
+
+  const navigation = useNavigate();
+  const navStateData = useLocation()
+  console.log(navStateData)
+
 // console.log(user)
   const authHandler = async (e) => {
   e.preventDefault();
   const action = e.target.name;
-  console.log(action);
+  // console.log(action);
 
   if (action === 'signin') {
     setLoading({...loading,signIn:true})
@@ -39,7 +44,7 @@ signInWithEmailAndPassword(auth, email, password)
     setTimeout(() => {
       setLoading({ ...loading, signIn: false });
     }, 1500);
-    navigate("/");
+    navigate(navStateData?.state?.redirect || "/");
   })
   .catch((err) => {
     setError(err.message);
@@ -63,7 +68,7 @@ signInWithEmailAndPassword(auth, email, password)
       setTimeout(() => {
         setLoading({ ...loading, signUp: false });
       }, 1500); // 1.5 seconds delay
-      navigate("/");
+      navigate(navStateData?.state?.redirect || "/");
     })
     .catch((err) => {
       setError(err.message);
@@ -87,6 +92,20 @@ signInWithEmailAndPassword(auth, email, password)
 
       <div className={classes.signupBox}>
         <h1>Sign-in</h1>
+
+        {
+          navStateData?.state?.msg && (<small
+            style={{
+              padding:"5px",
+              textAlign:"center",
+              color:"red",
+              fontWeight:"bold",
+            }}
+            >
+              {navStateData?.state?.msg}
+            </small>
+          )
+        }
         <form>
           <div>
             <label htmlFor="email">Email</label>
