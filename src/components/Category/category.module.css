@@ -34,9 +34,11 @@
   position: relative;
   margin-top: -120px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 items per row normally */
+  grid-template-columns: repeat(auto-fit,minmax(350px, 1fr) );
+  max-width: 1600px;
   place-items: center;
-  gap: 20px;
+  gap: 30px;
+  margin: auto;
 }
 
 /* 👇 2 items per row on mobile */

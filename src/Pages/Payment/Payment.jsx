@@ -12,6 +12,8 @@ import { db } from "../../Utility/firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
 
 import { useNavigate } from 'react-router-dom';
+
+
 function Payment() {
   const [{ user, basket }, dispatch] = useContext(DataContext);
 
@@ -89,9 +91,9 @@ const handlePayment = async (e) => {
         created: paymentIntent.created,
       }
     );
-
-    setProcessing(false);
-    navigate("/orders",{state:{msg:"you have placed new Order"}})
+      dispatch({ type: "EMPTY_BASKET" });
+          setProcessing(false);
+          navigate("/orders",{state:{msg:"you have placed new Order"}})
 
     // Add any success logic here (clear basket, redirect, etc.)
 
