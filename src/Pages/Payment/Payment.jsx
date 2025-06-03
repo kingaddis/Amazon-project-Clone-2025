@@ -40,24 +40,24 @@ const handleChange = (e) => {
 const handlePayment = async (e) => {
   e.preventDefault();
 
-  if (!user) {
-    setCardError("You must be logged in to make a payment.");
-    return;
-  }
-
-  const cardElement = elements.getElement(CardElement);
-  if (!cardElement) {
-    setCardError("Please enter card details.");
-    return;
-  }
-
-  setCardError("");
-  setProcessing(true);
-
   try {
+    if (!user) {
+      setCardError("You must be logged in to make a payment.");
+      return;
+    }
+
+    const cardElement = elements.getElement(CardElement);
+    if (!cardElement) {
+      setCardError("Please enter card details.");
+      return;
+    }
+
+    setCardError("");
+    setProcessing(true);
+
     const response = await axiosInstance({
       method: "POST",
-      url: `/payment/created?total=${total * 100}`,
+      url: `/payment/create?total=${Math.round(total * 100)}`,
     });
 
     const clientSecret = response.data?.clientSecret;
@@ -76,7 +76,6 @@ const handlePayment = async (e) => {
 
     const paymentIntent = confirmation.paymentIntent;
 
-    // Ensure user is valid here
     if (!user || !user.uid) {
       setCardError("User information is missing.");
       setProcessing(false);
@@ -91,11 +90,9 @@ const handlePayment = async (e) => {
         created: paymentIntent.created,
       }
     );
-      dispatch({ type: "EMPTY_BASKET" });
-          setProcessing(false);
-          navigate("/orders",{state:{msg:"you have placed new Order"}})
-
-    // Add any success logic here (clear basket, redirect, etc.)
+    dispatch({ type: "EMPTY_BASKET" });
+    setProcessing(false);
+    navigate("/orders", { state: { msg: "you have placed new Order" } });
 
   } catch (error) {
     console.error("Payment error:", error);
@@ -103,6 +100,7 @@ const handlePayment = async (e) => {
     setProcessing(false);
   }
 };
+
 
   return (
     <LayOut>
