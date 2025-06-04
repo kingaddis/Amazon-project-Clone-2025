@@ -1,6 +1,6 @@
 // export const catagoryFullInfos=["electronics","jewelery","men's clothing","women's clothing"]
 
-export const catagoryFullInfos= [
+export const categoryFullInfos= [
 ,
   {
     "id": 3,

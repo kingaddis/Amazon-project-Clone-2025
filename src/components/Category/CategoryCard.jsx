@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import classes from './category.module.css';
 
 
-function CatagoryCard({ data }) {
+function CategoryCard({ data }) {
   // console.log(data) 
   return (
     <div className={classes.category}>
@@ -19,5 +19,5 @@ function CatagoryCard({ data }) {
   );
 }
 
-export default CatagoryCard;
+export default CategoryCard;
 
