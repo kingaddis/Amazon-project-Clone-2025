@@ -7,14 +7,15 @@
     <title>Amazon Clone</title>
 
     <!--  CSP -->
-    <meta http-equiv="Content-Security-Policy" content="
-      default-src 'self';
-      script-src 'self' https://js.stripe.com 'unsafe-inline';
-      style-src 'self' 'unsafe-inline';
-      connect-src 'self' https://fakestoreapi.com;
-      img-src 'self' data: https:;
-      frame-src https://js.stripe.com;
-    ">
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' https://js.stripe.com https://www.gstatic.com https://www.googleapis.com 'unsafe-inline';
+  connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://fakestoreapi.com;
+  img-src 'self' data: https:;
+  style-src 'self' 'unsafe-inline';
+  frame-src https://js.stripe.com;
+">
+
   </head>
   <body>
     <div id="root"></div>

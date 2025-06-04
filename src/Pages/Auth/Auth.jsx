@@ -1,5 +1,7 @@
-import React, { useState,useContext } from 'react';
-import { Link,useNavigate,useLocation } from 'react-router-dom';
+// // src/pages/Auth.jsx
+
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import classes from './Signup.module.css';
 import { auth } from '../../Utility/firebase';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -14,72 +16,66 @@ function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading,setLoading]=useState({
-    signIn:false,
-    signUp:false
-  })
-  const navigate=useNavigate()
-  const [{user},dispatch]=useContext(DataContext)
-
-  const navigation = useNavigate();
-  const navStateData = useLocation()
-  console.log(navStateData)
-
-// console.log(user)
-  const authHandler = async (e) => {
-  e.preventDefault();
-  const action = e.target.name;
-  // console.log(action);
-
-  if (action === 'signin') {
-    setLoading({...loading,signIn:true})
-signInWithEmailAndPassword(auth, email, password)
-  .then((userInfo) => {
-    dispatch({
-      type: type.SET_USER,
-      user: userInfo.user,
-    });
-
-    // Delay turning off spinner by 1.5 seconds
-    setTimeout(() => {
-      setLoading({ ...loading, signIn: false });
-    }, 1500);
-    navigate(navStateData?.state?.redirect || "/");
-  })
-  .catch((err) => {
-    setError(err.message);
-
-    // Delay turning off spinner by 1.5 seconds
-    setTimeout(() => {
-      setLoading({ ...loading, signIn: false });
-    }, 1500);
+  const [loading, setLoading] = useState({
+    signIn: false,
+    signUp: false
   });
-} else if (action === 'signup') {
-  setLoading({ ...loading, signUp: true });
+  const navigate = useNavigate();
+  const [{ user }, dispatch] = useContext(DataContext);
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userInfo) => {
-      dispatch({
-        type: type.SET_USER,
-        user: userInfo.user,
-      });
+  const navStateData = useLocation();
 
-      // Delay hiding spinner
-      setTimeout(() => {
-        setLoading({ ...loading, signUp: false });
-      }, 1500); // 1.5 seconds delay
-      navigate(navStateData?.state?.redirect || "/");
-    })
-    .catch((err) => {
-      setError(err.message);
+  const authHandler = async (e) => {
+    e.preventDefault();
+    const action = e.target.name;
 
-      // Delay hiding spinner
-      setTimeout(() => {
-        setLoading({ ...loading, signUp: false });
-      }, 1500);
-    });
-}
-  }
+    if (!email || !password) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
+    setError(""); // reset error on new submit
+
+    if (action === 'signin') {
+      setLoading({ ...loading, signIn: true });
+      try {
+        const userInfo = await signInWithEmailAndPassword(auth, email, password);
+        dispatch({
+          type: type.SET_USER,
+          user: userInfo.user,
+        });
+
+        setTimeout(() => {
+          setLoading({ ...loading, signIn: false });
+          navigate(navStateData?.state?.redirect || "/");
+        }, 1500);
+      } catch (err) {
+        setError(err.message);
+        setTimeout(() => {
+          setLoading({ ...loading, signIn: false });
+        }, 1500);
+      }
+    } else if (action === 'signup') {
+      setLoading({ ...loading, signUp: true });
+      try {
+        const userInfo = await createUserWithEmailAndPassword(auth, email, password);
+        dispatch({
+          type: type.SET_USER,
+          user: userInfo.user,
+        });
+        setTimeout(() => {
+          setLoading({ ...loading, signUp: false });
+          navigate(navStateData?.state?.redirect || "/");
+        }, 1500);
+      } catch (err) {
+        setError(err.message);
+        setTimeout(() => {
+          setLoading({ ...loading, signUp: false });
+        }, 1500);
+      }
+    }
+  };
+
   return (
     <section className={classes.authContainer}>
       <Link to="/">
@@ -93,19 +89,19 @@ signInWithEmailAndPassword(auth, email, password)
       <div className={classes.signupBox}>
         <h1>Sign-in</h1>
 
-        {
-          navStateData?.state?.msg && (<small
+        {navStateData?.state?.msg && (
+          <small
             style={{
-              padding:"5px",
-              textAlign:"center",
-              color:"red",
-              fontWeight:"bold",
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
             }}
-            >
-              {navStateData?.state?.msg}
-            </small>
-          )
-        }
+          >
+            {navStateData.state.msg}
+          </small>
+        )}
+
         <form>
           <div>
             <label htmlFor="email">Email</label>
@@ -114,25 +110,37 @@ signInWithEmailAndPassword(auth, email, password)
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
 
-  
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit" name="signin" onClick={authHandler} disabled={loading.signIn}>
-          {loading.signIn ? (
-            <ClipLoader color="#ffffff" size={20} />
-          ) : (
-            "Sign In"
+          {error && (
+            <p style={{ color: "red", fontSize: "12px", marginTop: "5px" }}>{error}</p>
           )}
-        </button>
+
+          <button
+            type="submit"
+            name="signin"
+            onClick={authHandler}
+            disabled={loading.signIn}
+          >
+            {loading.signIn ? (
+              <ClipLoader color="#ffffff" size={20} />
+            ) : (
+              "Sign In"
+            )}
+          </button>
         </form>
 
         <p>
@@ -141,15 +149,22 @@ signInWithEmailAndPassword(auth, email, password)
           <Link to="#">Privacy Notice</Link>.
         </p>
 
-<button type="button" name="signup" onClick={authHandler} disabled={loading.signUp}>
-  {loading.signUp ? (
-    <ClipLoader color="#ffffff" size={20} />
-  ) : (
-    "Create your Amazon account"
-  )}
-</button>
-        {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
-        <Link to="/signin">Already have an account? Sign in</Link>
+        <button
+          type="button"
+          name="signup"
+          onClick={authHandler}
+          disabled={loading.signUp}
+        >
+          {loading.signUp ? (
+            <ClipLoader color="#ffffff" size={20} />
+          ) : (
+            "Create your Amazon account"
+          )}
+        </button>
+
+        <Link to="/signin" style={{ marginTop: "10px", display: "block" }}>
+          Already have an account? Sign in
+        </Link>
       </div>
     </section>
   );

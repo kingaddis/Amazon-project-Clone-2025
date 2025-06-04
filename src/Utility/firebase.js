@@ -2,10 +2,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth'
 import { getFirestore } from "firebase/firestore";
-// import "firebase/compat/auth"
-// import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,17 +21,24 @@ const db = getFirestore(app);
 
 export { auth, db };
 
+// src/Utility/firebase.js
 
-
-// // firebase.js
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/firestore";
+// import { initializeApp } from "firebase/app";
+// import { getAuth } from "firebase/auth";
+// import { getFirestore } from "firebase/firestore";
 
 // const firebaseConfig = {
-//   // your config
+//   apiKey: "YOUR_FIREBASE_API_KEY",            // Replace with your Firebase API key
+//   authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your Firebase Auth domain
+//   projectId: "YOUR_PROJECT_ID",                // Replace with your project ID
+//   storageBucket: "YOUR_PROJECT_ID.appspot.com", // Replace with your storage bucket
+//   messagingSenderId: "YOUR_SENDER_ID",          // Replace with your sender ID
+//   appId: "YOUR_APP_ID"                           // Replace with your app ID
 // };
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// const db = firebaseApp.firestore();
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
 
-// export { db };
+// // Export auth and firestore instances
+// export const auth = getAuth(app);
+// export const db = getFirestore(app);
