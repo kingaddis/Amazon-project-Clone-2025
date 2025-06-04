@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
 import LowerHeader from './LowerHeader';
-import { DataContext } from '../../Components/DataProvider/DataProvider';
+import { DataContext } from '../../components/DataProvider/DataProvider';
 import {auth} from "../../Utility/firebase"
 
 function Header() {

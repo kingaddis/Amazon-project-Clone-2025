@@ -3,12 +3,13 @@
   publish = "dist"
 
 [[headers]]
-  for = "/*.js"
+  for = "/*"
   [headers.values]
-    Content-Type = "application/javascript"
+    X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'"
 
-[[headers]]
-  for = "/*.jsx"
-  [headers.values]
-    Content-Type = "application/javascript"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

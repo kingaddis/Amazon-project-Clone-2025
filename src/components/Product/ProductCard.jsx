@@ -3,7 +3,7 @@ import Rating from "@mui/material/Rating";
 import CurrencyFormat from '../CurrencyFormat/CurrencyFormat';
 import classes from './Product.module.css';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../../Components/DataProvider/DataProvider';//components
+import { DataContext } from '../../components/DataProvider/DataProvider';//components
 import {type} from '../../Utility/action.type'
 
 function ProductCard({ product, flex, renderDesc,renderAdd }) {

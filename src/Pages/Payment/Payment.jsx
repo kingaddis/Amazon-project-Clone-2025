@@ -2,7 +2,7 @@ import React, { useContext,useState } from 'react';
 import classes from './Payment.module.css';
 import LayOut from '../../components/LayOut/LayOut';
 import { DataContext } from '../../Components/DataProvider/DataProvider';
-import ProductCard from '../../Components/Product/ProductCard';
+import ProductCard from '../../components/Product/ProductCard';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
 import  axiosInstance  from '../../API/axios';
