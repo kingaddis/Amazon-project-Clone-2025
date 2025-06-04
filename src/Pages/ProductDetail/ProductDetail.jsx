@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import LayOut from '../../Components/LayOut/LayOut';
-import ProductCard from '../../Components/Product/ProductCard';
-import Loader from '../../Components/Loader/Loader';
+import LayOut from '../../components/LayOut/LayOut';
+import ProductCard from '../../components/Product/ProductCard';
+import Loader from '../../components/Loader/Loader';
 import ProductUrl from '../../API/APIENDPOINT';
 // API/ENDPOINT FOR URL 
 function ProductDetail() {
