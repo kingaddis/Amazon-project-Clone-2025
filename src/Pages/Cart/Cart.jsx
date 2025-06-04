@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import classes from './Cart.module.css';
 import LayOut from '../../components/LayOut/LayOut';
 import { DataContext } from '../../components/DataProvider/DataProvider';
-import ProdactCrad from '../../Components/Product/ProductCard';
-import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
+import ProdactCrad from '../../components/Product/ProductCard';
+import CurrencyFormat from '../../components/CurrencyFormat/CurrencyFormat';
 import { Link } from 'react-router-dom';
 import {type} from '../../Utility/action.type'
 import { IoIosArrowDown } from "react-icons/io";

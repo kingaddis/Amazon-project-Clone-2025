@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import LayOut from '../../Components/LayOut/LayOut';
+import LayOut from '../../components/LayOut/LayOut';
 import classes from './Results.module.css';
-import ProductCard from '../../Components/Product/ProductCard';
-import Loader from '../../Components/Loader/Loader'; 
+import ProductCard from '../../components/Product/ProductCard';
+import Loader from '../../components/Loader/Loader'; 
 function Results() {
   const { categoryName } = useParams();
   const [results, setResults] = useState([]);
