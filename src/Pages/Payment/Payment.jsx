@@ -83,7 +83,7 @@ const handlePayment = async (e) => {
     }
 
     await setDoc(
-      doc(db, "users", user.uid, "orders", paymentIntent.id),
+      doc(db, "users", user.id, "orders", paymentIntent.id),
       {
         basket,
         amount: paymentIntent.amount,
