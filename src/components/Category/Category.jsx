@@ -2,7 +2,7 @@ import { catagoryFullInfos } from "./catagoryFullinfos";
 import CatagoryCard from './CategoryCard';
 import classes from "./category.module.css";
 
-function Catagory() {
+function Category() {
   return (
     <section className={classes.category_container}>
       {catagoryFullInfos.map((infos) => (
