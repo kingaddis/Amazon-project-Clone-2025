@@ -2,9 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="./public/square-amazon-app-logo-icon-701751695133387c8mdvsejvz.png" href="square-amazon-app-logo-icon-701751695133387c8mdvsejvz.png" />
+    <link rel="icon" href="square-amazon-app-logo-icon-701751695133387c8mdvsejvz.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazone Clone</title>
+    <title>Amazon Clone</title>
+
+    <!--  CSP -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' https://js.stripe.com 'unsafe-inline';
+      style-src 'self' 'unsafe-inline';
+      connect-src 'self' https://fakestoreapi.com;
+      img-src 'self' data: https:;
+      frame-src https://js.stripe.com;
+    ">
   </head>
   <body>
     <div id="root"></div>
