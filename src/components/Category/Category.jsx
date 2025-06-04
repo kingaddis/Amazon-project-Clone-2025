@@ -1,4 +1,4 @@
-import { categoryFullInfos } from "./categoryFullinfos";
+import { categoryFullInfos } from "./catagoryFullinfos";
 import CategoryCard from './CategoryCard';
 import classes from "./category.module.css";
 
