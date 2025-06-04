@@ -21,24 +21,5 @@ const db = getFirestore(app);
 
 export { auth, db };
 
-// src/Utility/firebase.js
 
-// import { initializeApp } from "firebase/app";
-// import { getAuth } from "firebase/auth";
-// import { getFirestore } from "firebase/firestore";
 
-// const firebaseConfig = {
-//   apiKey: "YOUR_FIREBASE_API_KEY",            // Replace with your Firebase API key
-//   authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your Firebase Auth domain
-//   projectId: "YOUR_PROJECT_ID",                // Replace with your project ID
-//   storageBucket: "YOUR_PROJECT_ID.appspot.com", // Replace with your storage bucket
-//   messagingSenderId: "YOUR_SENDER_ID",          // Replace with your sender ID
-//   appId: "YOUR_APP_ID"                           // Replace with your app ID
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-
-// // Export auth and firestore instances
-// export const auth = getAuth(app);
-// export const db = getFirestore(app);
