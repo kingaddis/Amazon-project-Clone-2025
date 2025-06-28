@@ -1,4 +1,3 @@
-// export const catagoryFullInfos=["electronics","jewelery","men's clothing","women's clothing"]
 
 export const categoryFullInfos= [
 ,

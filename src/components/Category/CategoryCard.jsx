@@ -8,7 +8,7 @@ function CategoryCard({ data }) {
   // console.log(data) 
   return (
     <div className={classes.category}>
-      {/* <Link to={`/category/${ data.name}`}> */}
+    
         <Link to={`/category/${ data.category }`}>
           <h2>{data.category}</h2>
         

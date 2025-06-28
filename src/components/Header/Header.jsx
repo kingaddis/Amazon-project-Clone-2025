@@ -7,14 +7,14 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoIosCart } from "react-icons/io";
 import LowerHeader from './LowerHeader';
 import { DataContext } from '../../components/DataProvider/DataProvider';
-import {auth} from "../../Utility/firebase"
+import { auth } from '../../Utility/firebase'; // ✅ Correct
 
 function Header() {
   const [{ user,basket }, dispatch] = useContext(DataContext);
   const totalItem=basket?.reduce((amount,item)=>{
     return item.amount + amount
   },0)
-  // console.log(basket.length)
+
   return (
     <>
     <section className={classes.sticky}>
@@ -98,4 +98,3 @@ function Header() {
 
 export default Header;
 
-//https://www.shutterstock.com/discover/unlimited?asset-selector=image&pl=PPC_GOO_US_BD-745122174377&cr=bc&kw=shutter%20stock&ds_eid=700000001400310&utm_source=GOOGLE&utm_campaign=CO%3DUS_LG%3DEN_BU%3DIMG_AD%3DBRAND_TS%3Dlggeneric_RG%3DAMER_AB%3DACQ_CH%3DSEM_OG%3DCONV_PB%3DGoogle&ds_cid=71700000014879517&ds_ag=FF%3DBrand-Shutterstock-Exact_AU%3DProspecting&ds_agid=58700001317767582&utm_medium=cpc&gad_source=1&gad_campaignid=311173745&gbraid=0AAAAAD9FeHCg3arykSGiMeXGB9bgh6z1K&gclid=Cj0KCQjwxJvBBhDuARIsAGUgNfg5FC6STcf4tSk2ZEQnxy9AECX6hYNlYf2-UlN2eGOMqCc6jOCanMsaAsA1EALw_wcB&gclsrc=aw.ds

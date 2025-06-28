@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
-import classes from './Header.module.css';  // Adjust the path & filename as needed
+import classes from './Header.module.css';  
 
 function LowerHeader() {
   return (

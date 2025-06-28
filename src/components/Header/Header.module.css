@@ -19,8 +19,8 @@
 .sticky {
   position: sticky;
   top: 0;
-  z-index: 1000; /* high enough to stay above other content */
-  background-color: white; /* or your header's background */
+  z-index: 1000;
+  background-color: white; 
 }
 /* Logo and Delivery */
 .logo_container {
@@ -32,7 +32,7 @@
 
 .logo_container img {
   width: 100px;
-  /* object-fit: contain; */
+
   margin-right: 10px;
   margin-left: 20px;
   padding-top: 5px;
@@ -82,11 +82,7 @@
   font-weight: bold;
   outline: 1px solid white;
 }
-/* .search svg{
-padding: 7px;
-background-color: #febd69;
-color: #1a1a1a;
-} */
+
  .search button {
   background-color: #febd69;
   border: none;

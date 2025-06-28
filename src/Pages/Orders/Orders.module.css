@@ -1,30 +1,51 @@
-.container{
-     background-color: #f0f0f0; /* or use #dfeeee if that's what you meant */
-  padding: 30px; 
+.container {
+  background-color: #f0f0f0;
+  padding: 30px;
 }
 
 .orders_container {
-  background-color: #f0f0f0; /* or use #dfeeee if that's what you meant */
+  background-color: #f0f0f0;
   padding: 20px;
 }
 
 .orders_container h2 {
   border-bottom: 2px solid var(--primary-color);
-  padding:20px;
-
- 
+  padding: 20px;
 }
 
 .orders_container p {
-  padding:12px
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .orders_container img {
-width: 100px !important;
- 
+  width: 100px !important;
 }
 
-.orders_container div {
- height: auto !important;
+.order_block {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
 
+/* Delete Button Styles */
+.deleteBtn {
+  background-color: #e74c3c; /* Red */
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+.deleteBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.5);
 }

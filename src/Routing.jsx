@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from './Pages/Landing/Landing';
 import Auth from './Pages/Auth/Auth';
 import Payment from './Pages/Payment/Payment';
@@ -34,7 +33,7 @@ function Routing() {
 
           }
         />
-        {/* <Route path="/payments" element={<Payment />} /> */}
+       
         <Route path="/orders" element={
               <ProtectedRoute 
                     msg={"You must be logged in to see your Orders."}
@@ -47,8 +46,7 @@ function Routing() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryName" element={<Results />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
-        {/* 🔁 Catch-all route */}
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+
       </Routes>
     </Router>
   );

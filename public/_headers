@@ -1,0 +1,5 @@
+/*
+  Content-Security-Policy:
+    default-src 'self';
+    script-src 'self' https://js.stripe.com https://www.gstatic.com https://www.googleapis.com https://apis.google.com 'unsafe-inline';
+    connect-src 'self' http://localhost:5001 https://js.stripe.com https://fakestoreapi.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://your-backend-url.com;*/
